@@ -29,10 +29,21 @@ router.get('/login', (req, res) => {
   res.render('users/login');
 });
 
-router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {
-  req.flash('success', 'Welcome back!');
-  res.redirect('/campgrounds');
-});
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    failureFlash: true,
+    failureRedirect: "/login",
+    failureMessage: true,
+    keepSessionInfo: true,
+  }),
+  (req, res) => {
+    req.flash("success", "User logged to YelpCamp");
+    const redirectUrl = req.session.returnTo || "/campgrounds";
+    delete req.session.returnTo;
+    res.redirect(redirectUrl);
+  }
+);
 
 router.get('/logout', (req, res, next) => {
   req.logout(function (err) {
