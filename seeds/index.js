@@ -23,9 +23,18 @@ const seedDB = async () => {
       author: '62e2d39617df8c4f4138a4a4',
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
       title: `${sample(descriptors)} ${sample(places)}`,
-      image: `https://source.unsplash.com/random/300x300?camping,${i}`,
       description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam distinctio id, obcaecati expedita eveniet maxime.",
-      price
+      price,
+      images: [
+        {
+          url: 'https://res.cloudinary.com/dpxiq1wps/image/upload/v1659112718/YelpCamp/lpikifw31rg7veq4vi5q.jpg',
+          filename: 'YelpCamp/lpikifw31rg7veq4vi5q',
+        },
+        {
+          url: 'https://res.cloudinary.com/dpxiq1wps/image/upload/v1659112718/YelpCamp/mibtzo7n2famt680mtbq.jpg',
+          filename: 'YelpCamp/mibtzo7n2famt680mtbq',
+        }
+      ]
     });
     await camp.save();
   }
